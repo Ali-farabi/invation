@@ -1,26 +1,123 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #050505;
+  --foreground: #f8fafc;
+  --card-glass: rgba(12, 12, 12, 0.7);
+  --accent: #ff3b3b;
+  --accent-soft: rgba(255, 59, 59, 0.2);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #050505;
+    --foreground: #f8fafc;
+    --card-glass: rgba(12, 12, 12, 0.7);
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body), ui-sans-serif, system-ui;
+}
+
+.font-display {
+  font-family: var(--font-display), ui-serif, Georgia, serif;
+}
+
+.glass-card {
+  background: var(--card-glass);
+  backdrop-filter: blur(18px);
+}
+
+.bg-dot-grid {
+  background-image: radial-gradient(
+    rgba(248, 250, 252, 0.08) 1px,
+    transparent 1px
+  );
+  background-size: 22px 22px;
+}
+
+.bg-soft-lines {
+  background-image: linear-gradient(
+    130deg,
+    rgba(255, 59, 59, 0.18) 0%,
+    rgba(15, 15, 15, 0.1) 40%,
+    transparent 70%
+  );
+}
+
+@keyframes float-soft {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -10px, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 14px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.float-slow {
+  animation: float-soft 9s ease-in-out infinite;
+}
+
+.float-slower {
+  animation: float-soft 13s ease-in-out infinite;
+}
+
+.fade-up {
+  animation: fade-up 700ms ease-out both;
+}
+
+@keyframes confetti-fall {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(0, 120px, 0) rotate(120deg);
+    opacity: 0;
+  }
+}
+
+.confetti-piece {
+  position: absolute;
+  top: -6px;
+  width: 8px;
+  height: 14px;
+  border-radius: 2px;
+  animation: confetti-fall 1.6s ease-out forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .float-slow,
+  .float-slower,
+  .fade-up,
+  .confetti-piece {
+    animation: none !important;
+  }
 }
