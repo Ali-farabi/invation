@@ -10,12 +10,6 @@ type ConfettiPiece = {
   rotate: string;
 };
 
-const details = [
-  { label: "Дата", value: "(скажу позже)" },
-  { label: "Время", value: "(скажу позже)" },
-  { label: "Адрес", value: "(скажу позже)" },
-];
-
 const storageKey = "invite_yes";
 const listeners = new Set<() => void>();
 
@@ -158,6 +152,11 @@ export default function Home() {
       <div className="pointer-events-none absolute -bottom-40 -right-40 h-[26rem] w-[26rem] rounded-full bg-[radial-gradient(circle,_rgba(255,59,59,0.25),_transparent_70%)] blur-3xl opacity-70 float-slow" />
       <div className="pointer-events-none absolute inset-0 bg-dot-grid opacity-35" />
       <div className="pointer-events-none absolute inset-0 bg-soft-lines opacity-60" />
+      <div className="pointer-events-none absolute inset-0 bg-heart-dust opacity-60" />
+      <div className="pointer-events-none absolute left-[8%] top-[18%] heart-float" />
+      <div className="pointer-events-none absolute left-[22%] top-[64%] heart-float [animation-delay:1.8s]" />
+      <div className="pointer-events-none absolute left-[70%] top-[28%] heart-float [animation-delay:0.6s]" />
+      <div className="pointer-events-none absolute left-[84%] top-[62%] heart-float [animation-delay:2.4s]" />
 
       <main className="relative z-10 flex min-h-screen items-center justify-center px-4 py-16">
         <section className="glass-card w-full max-w-xl rounded-3xl border border-white/10 p-8 shadow-[0_30px_90px_rgba(0,0,0,0.55)] sm:p-10">
@@ -174,18 +173,12 @@ export default function Home() {
           </div>
 
           <div className="fade-up mt-6 rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur sm:mt-7">
-            <div className="space-y-3">
-              {details.map((item) => (
-                <div
-                  key={item.label}
-                  className="flex items-center justify-between text-sm sm:text-base"
-                >
-                  <span className="text-slate-400">{item.label}</span>
-                  <span className="font-medium text-slate-100">
-                    {item.value}
-                  </span>
-                </div>
-              ))}
+            <div className="flex items-center justify-center gap-3 text-2xl text-rose-200">
+              <span className="heart-pulse delay-0">❤</span>
+              <span className="heart-pulse delay-1">❤</span>
+              <span className="heart-pulse delay-2">❤</span>
+              <span className="heart-pulse delay-3">❤</span>
+              <span className="heart-pulse delay-4">❤</span>
             </div>
           </div>
 
@@ -200,7 +193,7 @@ export default function Home() {
               aria-live="polite"
             >
               <p className="text-base font-semibold text-white sm:text-lg">
-                Урааа! Спасибо 🥹💛 Напишу тебе детали чуть позже.
+                Урааа! Спасибо 🥹💛 Подробности отправлю чуть позже.
               </p>
               <div className="pointer-events-none absolute inset-0">
                 {confettiPieces.map((piece) => (
